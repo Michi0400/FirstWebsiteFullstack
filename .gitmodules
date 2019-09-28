@@ -1,0 +1,6 @@
+[submodule "FirstWebsiteFrontend"]
+	path = FirstWebsiteFrontend
+	url = https://github.com/Michi0400/FirstWebsiteFrontend
+[submodule "FirstwWebsiteBackend"]
+	path = FirstwWebsiteBackend
+	url = https://github.com/Michi0400/FirstwWebsiteBackend
