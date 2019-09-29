@@ -20,6 +20,7 @@ export class ShoppinglistComponent implements OnInit {
   public displayedColumns: string[] = ['menge', 'einheit', 'name', 'delete'];
   public menge = 0;
   public einheit = '';
+  public opened: boolean = false;
 
   constructor(private router: Router,
     private readonly shoppingItemService: ShoppingItemService,

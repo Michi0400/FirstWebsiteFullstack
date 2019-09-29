@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  public opened: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {

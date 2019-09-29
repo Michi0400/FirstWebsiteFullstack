@@ -19,6 +19,7 @@ export class RezeptComponent implements OnInit {
   public isEmpty = false;
   public editing = false;
   public helpId: string;
+  public opened: boolean = false;
 
   constructor(private router: Router, private readonly repeptService: RezeptService, private readonly dialog: MatDialog) { };
 

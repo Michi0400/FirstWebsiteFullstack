@@ -1,7 +1,22 @@
 version: "3.7"
 services:
+  nginx:
+    container_name: nginx-angular
+    image: nginx-angular
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - webnet
+
+      
   web:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     depends_on:
       - db
     ports:

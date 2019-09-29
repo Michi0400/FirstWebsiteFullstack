@@ -91,7 +91,7 @@ export class RezeptAddComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  public save(angabe: Angabe, event: Event) {
+  public save(angabe: Angabe) {
     this.helpId = angabe.id;
     this.angabeStr = angabe.name;
   }
