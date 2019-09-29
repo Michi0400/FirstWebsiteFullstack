@@ -1,0 +1,60 @@
+.header-table > th {
+    font-size: 1.5rem;
+}
+h1 { font-family: times, Times New Roman, times-roman, georgia, serif;
+	color: #444;
+	margin: 0;
+	padding: 0px 0px 6px 0px;
+	font-size: 40px;
+	line-height: 34px;
+	letter-spacing: -2px;
+    font-weight: bold;
+    text-align: center;
+   }
+
+table{
+    width: 100%;
+}
+
+th.mat-column-index{ 
+    width: 15%;
+} 
+th.mat-column-delete{
+    width: 5%;
+}
+th.mat-column-input{
+    width: 40%;
+}
+th.mat-column-output{
+    width: 40%;
+}
+
+.autoFlexer{
+    flex: 1 1 auto;
+}
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: auto;
+  }
+
+mat-sidenav {
+    width: 10%;
+}
+
+.inputfield{
+    display: flex;
+    flex-direction: column;
+}
+
+.saveButton{
+    width: 5%;
+    padding: 0px;
+}
+
+.menuSideNav{
+    text-align: center;
+}

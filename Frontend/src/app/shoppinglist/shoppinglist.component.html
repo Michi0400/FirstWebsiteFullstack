@@ -1,0 +1,108 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened">
+    <mat-nav-list>
+      <mat-list-item routerLink="../"><i class="material-icons">home</i>Home</mat-list-item>
+      <mat-list-item routerLink="/rezept"><i class="material-icons">list</i>Rezepte</mat-list-item>
+      <mat-list-item routerLink="/shoppinglist"><i class="material-icons">check_box</i>Shoppinglist</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <span>
+        <h1>Shopping List</h1>
+      </span>
+      <span class="autoFlexer"></span>
+      <span>
+        <button mat-button (click)="sidenav.toggle()">
+          <i class="material-icons">
+            reorder
+          </i>
+        </button></span>
+    </mat-toolbar>
+
+    <mat-form-field class="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="shoppingList">
+
+      <ng-container matColumnDef="menge">
+        <th mat-header-cell class="menge" *matHeaderCellDef>Menge</th>
+        <td mat-total-cell class="menge" *matCellDef="let user">
+          {{user.menge}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="einheit">
+        <th mat-header-cell class="einheit" *matHeaderCellDef>Einheit</th>
+        <td mat-total-cell class="einheit" *matCellDef="let user">
+          {{user.einheit}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell class="name" *matHeaderCellDef>Gegenstand</th>
+        <td mat-cell *matCellDef="let user">
+          <mat-selection-list>
+            <mat-list-option>
+              <mat-list-item>
+                <span>{{user.name}}</span>
+              </mat-list-item>
+            </mat-list-option>
+          </mat-selection-list>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell class="delete" *matHeaderCellDef></th>
+        <td mat-total-cell *matCellDef="let user">
+          <button mat-button (click)="delete(user)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-table"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br>
+    <mat-card *ngIf="isAdd">
+      <mat-card-title>Eingabefeld</mat-card-title>
+      <div class="inputfield">
+        <mat-form-field>
+          <mat-label>Menge</mat-label>
+          <input matInput [(ngModel)]="menge" placeholder="Menge">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Einheit</mat-label>
+          <mat-select placeholder="Einheit" [(ngModel)]="einheit">
+            <mat-option value="g">g</mat-option>
+            <mat-option value="kg">kg</mat-option>
+            <mat-option value="tl">tl</mat-option>
+            <mat-option value="el">el</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Gegenstand</mat-label>
+          <input matInput [(ngModel)]="gegenstand" placeholder="Gegenstand" (keyup.enter)="save()">
+        </mat-form-field>
+        <br>
+        <button mat-button (click)="save()" class="saveButton">
+          Speichern
+        </button>
+      </div>
+    </mat-card>
+    <mat-toolbar>
+      <button mat-button *ngIf="!isAdd" (click)="add()">
+        Add
+      </button>
+      <span class="autoFlexer"></span>
+      <button mat-button [disabled]="isEmpty" (click)="deleteAll()">
+        Delete all
+      </button>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

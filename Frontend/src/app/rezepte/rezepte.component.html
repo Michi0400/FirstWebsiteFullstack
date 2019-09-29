@@ -1,0 +1,85 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened">
+    <mat-nav-list>
+      <mat-list-item routerLink="../"><i class="material-icons">home</i>Home</mat-list-item>
+      <mat-list-item routerLink="/rezept"><i class="material-icons">list</i>Rezepte</mat-list-item>
+      <mat-list-item routerLink="/shoppinglist"><i class="material-icons">check_box</i>Shoppinglist</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <span>
+        <h1>Rezepte</h1>
+      </span>
+      <span class="autoFlexer"></span>
+      <span>
+        <button mat-button (click)="sidenav.toggle()">
+          <i class="material-icons">
+            reorder
+          </i>
+        </button></span>
+    </mat-toolbar>
+    <mat-form-field class="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    <table mat-table [dataSource]="trainingData">
+
+      <ng-container matColumnDef="index">
+        <th mat-header-cell class="index" *matHeaderCellDef>Index</th>
+        <td mat-cell *matCellDef="let user; let i = index;">{{i+1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell class="name" *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let user">{{user.name}}</td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell class="description" *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let user">{{user.description}}</td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell class="delete" *matHeaderCellDef></th>
+        <td mat-total-cell *matCellDef="let user">
+          <button mat-button (click)="delete(user)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell class="edit" *matHeaderCellDef></th>
+        <td mat-total-cell *matCellDef="let rezept">
+          <button mat-button (click)="edit(rezept)">
+            <i class="material-icons">edit</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="link">
+        <th mat-header-cell class="link" *matHeaderCellDef></th>
+        <td mat-total-cell *matCellDef="let rezept">
+          <button mat-button routerLink="../rezept/content/{{rezept.id}}">
+            <i class="material-icons">forward</i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-table"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br>
+    <mat-toolbar>
+      <button mat-button (click)="add()">
+        Add
+      </button>
+      <span class="autoFlexer"></span>
+      <button mat-button [disabled]="isEmpty" (click)="deleteAll(trainingData)">
+        Delete all
+      </button>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

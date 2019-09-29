@@ -1,0 +1,54 @@
+checklist component html:
+
+<td mat-footer-cell *matFooterCellDef>
+          <mat-form-field *ngIf="!editing">
+            <input matInput [(ngModel)]="newInput" placeholder="Name">
+          </mat-form-field>
+          <mat-form-field *ngIf="editing">
+            <input matInput [(ngModel)]="newInput">
+          </mat-form-field>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef>
+          <mat-form-field *ngIf="!editing">
+            <input matInput [(ngModel)]="newOutput" placeholder="Short description" (keyup.enter)="lernWas()">
+          </mat-form-field>
+          <mat-form-field *ngIf="editing">
+            <input matInput [(ngModel)]="newOutput" (keyup.enter)="lernWas()">
+          </mat-form-field>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef>
+          <button mat-button *ngIf="!editing" (click)="lernWas()" class="saveButton">
+            <i class="material-icons">
+              done
+            </i>
+          </button>
+          <button mat-button *ngIf="editing" (click)="update()" class="editButton">
+            Update
+          </button>
+        </td>
+
+
+checklist add component html:
+
+ <br *ngIf="!emptyAngaben">
+    <mat-form-field>
+        <input matInput [ngModel]="angabeStr" placeholder="Angabe" [matAutocomplete]="auto" #angabe>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of helpOptions" [value]="option" (click)="save(option)">
+                {{option.name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <button mat-button (click)="addAngabe()">
+        <i class="material-icons">
+            add
+        </i></button>
+
+
+         <br>
+    <mat-list *ngIf="!emptyAngaben">
+        <mat-list-item *ngFor="let item of angaben">{{item.name}}</mat-list-item>
+    </mat-list>
+
