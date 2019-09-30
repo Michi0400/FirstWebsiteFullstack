@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 import { ShoppingItem } from './models/shoppingItem.model';
 
 @Injectable({
@@ -48,11 +49,11 @@ export class ShoppingItemService {
   }
 
   public async getAll() {
-    return this.http.get<ShoppingItem[]>('http://localhost:4000/shoppinglist').toPromise();
+    return this.http.get<ShoppingItem[]>(`${environment.API_URL}/shoppinglist`).toPromise();
   }
 
   public async create({ menge, einheit, name }: { menge: number, einheit: string, name: string }) {
-    return this.http.post<ShoppingItem>('http://localhost:4000/shoppinglist', {
+    return this.http.post<ShoppingItem>(`${environment.API_URL}/shoppinglist`, {
       menge,
       einheit,
       name
@@ -60,11 +61,11 @@ export class ShoppingItemService {
   }
 
   public async delete(id: string) {
-    return this.http.delete(`http://localhost:4000/shoppinglist/${id}`).toPromise();
+    return this.http.delete(`${environment.API_URL}/shoppinglist/${id}`).toPromise();
   }
 
   public async update({ menge, einheit, name, id }: { menge: number, einheit: string, name: string, id: string }) {
-    return this.http.put(`http://localhost:4000/shoppinglist/${id}`, {
+    return this.http.put(`${environment.API_URL}/shoppinglist/${id}`, {
       id,
       menge,
       einheit,
