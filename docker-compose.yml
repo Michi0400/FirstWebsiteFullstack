@@ -45,3 +45,4 @@ services:
       - webnet
 networks:
   webnet:
+    driver: bridge
