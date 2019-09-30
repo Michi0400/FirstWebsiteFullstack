@@ -5,12 +5,14 @@ FROM node:alpine as builder
 ARG env=prod
 
 RUN apk update && apk add --no-cache make git
+
 ## Build the angular app in production mode and store the artifacts in dist folder
 
 WORKDIR /app
 COPY package.json package-lock.json  /app/
 RUN cd /app && npm install
 COPY .  /app
+RUN npm run build
 
 RUN cd /app && npm run build:$env
 
