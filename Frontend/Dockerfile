@@ -9,7 +9,6 @@ RUN apk update && apk add --no-cache make git
 
 WORKDIR /app
 COPY package.json package-lock.json  /app/
-RUN npm install @angular/cli
 RUN cd /app && npm install
 COPY .  /app
 
