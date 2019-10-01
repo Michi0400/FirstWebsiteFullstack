@@ -39,4 +39,8 @@ h1 { font-family: times, Times New Roman, times-roman, georgia, serif;
         object-fit: cover;
         width: 100%; 
         height: auto;
-      }
+    }
+    button{
+      background-color: rgb(119, 113, 113);
+      color: ivory;
+  }
