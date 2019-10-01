@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package.json package-lock.json  /app/
 RUN cd /app && npm install
 COPY .  /app
-RUN npm run build
+## RUN npm run build (eventuell nicht benötigt)
 
 RUN cd /app && npm run build:$env
 
