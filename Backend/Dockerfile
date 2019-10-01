@@ -11,9 +11,7 @@ COPY package*.json ./
 RUN npm install --production
 
 COPY --from=builder /usr/app/dist ./dist
-
 COPY ./wait-for-it.sh .
-
 COPY .env* ./
 
 ENV NODE_ENV production
