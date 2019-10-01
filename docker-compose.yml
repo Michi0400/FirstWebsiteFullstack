@@ -16,6 +16,7 @@ services:
 
       
   web:
+    container_name: server
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -25,8 +26,6 @@ services:
       - "4000:4000"
     environment:
       DB_HOST: db
-    ports:
-      - 4000:4000
     networks:
       - webnet
     command: ["./wait-for-it.sh", "db:5432", "--", "npm", "run", "start:prod"]
