@@ -16,7 +16,7 @@ services:
 
       
   web:
-    container_name: server
+    container_name: web
     build:
       context: ./backend
       dockerfile: Dockerfile
