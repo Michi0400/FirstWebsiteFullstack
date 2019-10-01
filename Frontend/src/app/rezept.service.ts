@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
 import { Angabe } from './models/angabe.model';
 import { Rezept } from './models/rezept.model';
 
@@ -12,7 +11,7 @@ export class RezeptService {
   constructor(private readonly http: HttpClient) { }
 
   public async queryAnlage(query: string) {
-    return this.http.get<any>(`${environment.API_URL}/angabe`, {
+    return this.http.get<any>(`http://34.89.137.75:4000/api/angabe`, {
       params: {
         q: query
       }
@@ -20,11 +19,11 @@ export class RezeptService {
   }
 
   public async getAll() {
-    return this.http.get<Rezept[]>(`${environment.API_URL}/rezept`).toPromise();
+    return this.http.get<Rezept[]>(`http://34.89.137.75:4000/api/rezept`).toPromise();
   }
 
   public async create({ name, description, angaben, anleitung }: { name: string, description: string, angaben: Angabe[], anleitung: string }) {
-    return this.http.post<Rezept>(`${environment.API_URL}/rezept`, {
+    return this.http.post<Rezept>(`http://34.89.137.75:4000/api/rezept`, {
       name,
       description,
       anleitung,
@@ -33,17 +32,17 @@ export class RezeptService {
   }
 
   public async delete(id: string) {
-    return this.http.delete(`${environment.API_URL}/rezept/${id}`).toPromise();
+    return this.http.delete(`http://34.89.137.75:4000/api/rezept/${id}`).toPromise();
   }
 
   public async update({ name, description, id }: Rezept) {
-    return this.http.put(`${environment.API_URL}/rezept/${id}`, {
+    return this.http.put(`http://34.89.137.75:4000/api/rezept/${id}`, {
       name,
       description
     }).toPromise();
   }
 
   public async getOne(id: string) {
-    return this.http.get<Rezept>(`${environment.API_URL}/rezept/content/${id}`).toPromise();
+    return this.http.get<Rezept>(`http://34.89.137.75:4000/api/rezept/content/${id}`).toPromise();
   }
 }
